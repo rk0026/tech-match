@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Link from "next/link";
 
 interface Job {
   id: number;
@@ -51,18 +51,21 @@ export default function Home() {
       {/* Nav */}
       <nav className="fixed top-0 w-full z-50 glass-card border-b-0 py-4 px-8">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="text-2xl font-bold tracking-tighter text-white">
+          <Link href="/" className="text-2xl font-bold tracking-tighter text-white">
             TECH<span className="text-accent">MATCH</span>
+          </Link>
+          <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400 items-center">
+            <Link href="/" className="hover:text-accent transition-colors">Jobs</Link>
+            <Link href="#" className="hover:text-accent transition-colors">Stack Insights</Link>
+            <Link href="#" className="hover:text-accent transition-colors">Developer Profile</Link>
+            <div className="h-4 w-[1px] bg-white/10 mx-2" />
+            <Link href="/admin" className="px-4 py-1.5 rounded-lg bg-accent/10 border border-accent/20 text-accent text-xs font-bold hover:bg-accent/20 transition-all">
+              ADMIN PANEL
+            </Link>
           </div>
-          <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
-            <a href="#" className="hover:text-accent transition-colors">Jobs</a>
-            <a href="#" className="hover:text-accent transition-colors">Stack Insights</a>
-            <a href="#" className="hover:text-accent transition-colors">Developer Profile</a>
-            <a href="/admin" className="hover:text-accent transition-colors font-bold text-accent">Admin</a>
-          </div>
-          <button className="px-5 py-2 rounded-full border border-accent text-accent text-xs font-bold hover:bg-accent/10 transition-all">
+          <Link href="/login" className="px-5 py-2 rounded-full border border-accent text-accent text-xs font-bold hover:bg-accent/10 transition-all">
             Login
-          </button>
+          </Link>
         </div>
       </nav>
 
@@ -98,7 +101,7 @@ export default function Home() {
           </div>
 
           <div className="grid gap-6">
-            {!loading && jobs.map((job) => (
+            {!loading && jobs.map((job: Job) => (
               <div
                 key={job.id}
                 className="glass-card rounded-2xl p-6 glow-hover group cursor-pointer flex flex-col md:flex-row justify-between items-start md:items-center"
@@ -113,7 +116,7 @@ export default function Home() {
                     {job.role}
                   </h3>
                   <div className="flex flex-wrap gap-2">
-                    {job.stack.map(tech => (
+                    {job.stack.map((tech: string) => (
                       <span key={tech} className="bg-white/5 border border-white/10 px-3 py-1 rounded-lg text-[10px] font-mono text-slate-300 uppercase">
                         {tech}
                       </span>
