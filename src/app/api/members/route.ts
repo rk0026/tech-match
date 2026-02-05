@@ -1,3 +1,4 @@
+export const dynamic = 'force-dynamic'; // 加入這行
 import { NextResponse } from 'next/server';
 import { MEMBERS, Member } from '@/data/mockMembers';
 
